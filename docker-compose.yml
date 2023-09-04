@@ -1,0 +1,24 @@
+version: '3.6'
+
+services:
+  server:
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+    ports:
+      - 8080:8080
+    build:
+      dockerfile: ./images/nx/Dockerfile
+    volumes:
+      - ./:/workspace
+    command: nx serve server --configuration=development
+  client:
+    environment:
+      - NX_SERVER_URL=localhost:8080
+    ports:
+      - 4200:4200
+    build:
+      dockerfile: ./images/nx/Dockerfile
+    volumes:
+      - ./:/workspace
+    command: nx serve client --host=0.0.0.0 --configuration=development
