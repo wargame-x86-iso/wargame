@@ -2,6 +2,8 @@ import { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 import * as d3Hexbin from 'd3-hexbin'
 
+import { with2DRange } from '../utils'
+
 export interface RenderHexProps {
   fill?: (x: number, y: number) => string
   stroke?: (x: number, y: number) => string
@@ -15,16 +17,6 @@ export interface HexGridProps {
   render?: RenderHexProps
   onClick?: (x: number, y: number) => void
   onHover?: (x: number, y: number) => void
-}
-
-function with2DRange<T>(
-  width: number,
-  height: number,
-  fn: (x: number, y: number) => T
-) {
-  return Array.from({ length: width })
-    .map((_, i) => Array.from({ length: height }).map((_, j) => fn(i, j)))
-    .flat()
 }
 
 export const HexGrid = (props: HexGridProps) => {
