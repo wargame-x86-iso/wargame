@@ -1,0 +1,687 @@
+weapons:
+  carbines:
+    range: 5
+    damage: 3
+    rate: 3
+    ammo: 10
+  submachine guns:
+    range: 4
+    damage: 2
+    rate: 4
+    ammo: 10
+  shotguns:
+    range: 3
+    damage: 4
+    rate: 3
+    ammo: 8
+  rifles:
+    range: 6
+    damage: 4
+    rate: 2
+    ammo: 10
+    attributes:
+      - piercing
+  long rifles:
+    range: 7
+    damage: 5
+    rate: 2
+    ammo: 10
+    attributes:
+      - piercing
+  light MG:
+    range: 6
+    damage: 4
+    rate: 4
+    ammo: 8
+    attributes:
+      - piercing
+      - suppressive
+  heavy MG:
+    range: 7
+    damage: 5
+    rate: 3
+    ammo: 6
+    attributes:
+      - piercing
+      - suppressive
+  AT grenades:
+    range: 3
+    damage: 6
+    rate: 1
+    ammo: 1
+  light mortar:
+    range: 6
+    damage: 3
+    rate: 2
+    ammo: 6
+    attributes:
+      - artillery
+  grenade launcher:
+    range: 5
+    damage: 3
+    rate: 2
+    ammo: 6
+    attributes:
+      - suppressive
+  AT missle:
+    range: 8
+    damage: 6
+    rate: 1
+    ammo: 2
+    attributes:
+      - HEAT
+  sniper rifle:
+    range: 9
+    damage: 6
+    rate: 1
+    ammo: 8
+    attributes:
+      - piercing
+      - suppressive
+  antimaterial rifle:
+    range: 7
+    damage: 7
+    rate: 1
+    ammo: 5
+    attributes:
+      - piercing
+  light cannon:
+    range: 7
+    damage: 6
+    rate: 3
+    ammo: 8
+    attributes:
+      - HEAT
+  medium cannon:
+    range: 8
+    damage: 8
+    rate: 2
+    ammo: 8
+    attributes:
+      - HEAT
+  heavy cannon:
+    range: 9
+    damage: 10
+    rate: 1
+    ammo: 6
+    attributes:
+      - HEAT
+  howitzer:
+    range: 14
+    damage: 8
+    rate: 1
+    ammo: 6
+    attributes:
+      - artillery
+      - suppressive
+  medium mortar:
+    range: 12
+    damage: 5
+    rate: 2
+    ammo: 6
+    attributes:
+      - artillery
+      - suppressive
+  MLRS:
+    range: 12
+    damage: 4
+    rate: 4
+    ammo: 6
+    attributes:
+      - artillery
+      - suppressive
+
+infantry:
+	rifle company:
+    attributes:
+      one or none:
+        - conscripts
+        - gaurdsmen
+    gear:
+      any of:
+        - entrenching tools
+        - flak jackets
+    units:
+      rifle HQ: 
+        min: 1
+        max: 1
+        main armament: 
+          one of:
+            - carbines
+            - submachine guns
+            - rifles
+
+      rifle squad:
+        min: 3
+        max: 6
+        main armament:
+          one of:
+            - carbines
+            - rifles
+            - long rifles
+        secondary armament:
+          one or none:
+            - light MG
+            - AT grenades
+
+		  support team:
+        min: 0
+        max: 2
+        main armament: 
+          one of:
+            - heavy MG
+            - light mortar
+            - light cannon
+            - AT missle
+        secondary armament: submachine guns
+
+      engineer team:
+        min: 0
+        max: 1
+        main armament:
+          one of:
+            - carbines
+            - submachine guns 
+        gear: 
+          one of:
+            - mines
+            - demining tools
+            - bridge building tools
+            - repair tools
+      
+      light tank:
+        min: 0
+        max: 2
+        main armament: light cannon
+        secondary armament: 
+          one of:
+            - light MG
+            - AT missle
+        attributes:
+          - enhanced optics
+
+      medium tank:
+        min: 0
+        max: 2
+        main armament: medium cannon
+        secondary armament: light MG
+        gear:
+          any of:
+            - minesweeper
+            - skirts
+
+	mechanized rifle company:
+    gear:
+      any of:
+        - entrenching tools
+        - flak jackets
+    attributes:
+      one or none:
+        - gaurdsmen
+    units:
+      mechanized rifle HQ:
+        min: 1
+        max: 1
+        main armament:
+          one of:
+            - carbines
+            - submachine guns
+
+      mechanized rifle squad:
+        min: 3
+        max: 5
+        main armament:
+          one of:
+            - carbines
+            - rifles
+        secondary armament:
+          one or none:
+            - AT grenades
+            - light MG
+
+      mechanized engineer team:
+        min: 0
+        max: 2
+        main armament:
+          one of:
+            - carbines
+            - submachine guns 
+        gear: 
+          one of:
+            - mines
+            - demining tools
+            - bridge building tools
+            - repair tools
+
+      troop carrier:
+        min: 4
+        max: 8
+        main armament:
+          one of:
+            - light MG
+            - AT missle
+            - grenade launcher
+        attributes:
+          - transport
+
+      light tank:
+        min: 0
+        max: 2
+        main armament: light cannon
+        secondary armament: 
+          one of:
+            - light MG
+            - AT missle
+        attributes:
+          - enhanced optics
+
+	light rifle company:
+    attributes:
+      one or none:
+        - conscripts
+        - gaurdsmen
+    gear:
+      any of:
+        - entrenching tools
+        - flak jackets
+        - close combat weapons
+        - camo nets
+    units:
+      light rifle HQ: 
+        min: 1
+        max: 1
+        main armament: 
+          one of:
+            - carbines
+            - submachine guns
+            - rifles
+
+      light rifle squad:
+        min: 3
+        max: 6
+        main armament:
+          one of:
+            - carbines
+            - rifles
+            - shotguns
+            - submachine guns
+        secondary armament:
+          one or none:
+            - AT grenades
+            - light MG
+
+      support team:
+        min: 0
+        max: 2
+        main armament: 
+          one of:
+            - heavy MG
+            - AT missle
+            - antimaterial rifle
+            - long rifles
+            - grenade launcher
+        secondary armament:
+          one or none:
+            - AT grenades
+
+      engineer team:
+        min: 0
+        max: 1
+        main armament:
+          one of:
+            - carbines
+            - shotguns
+            - submachine guns
+        gear: 
+          one of:
+            - mines
+            - demining tools
+            - bridge building tools
+            - repair tools
+
+      light tank:
+        min: 0
+        max: 2
+        main armament: light cannon
+        secondary armament: 
+          one of:
+            - light MG
+            - AT missle
+        attributes:
+          - enhanced optics
+
+armour:
+
+  tank company:
+    company HQ:
+      min: 1
+      max: 1
+      main armament: submachine guns
+      gear:
+        - camo nets
+      attributes:
+        - spotter
+    light tank platoon:
+      min: 0
+      max: 2
+      gear:
+        any of:
+          - camo nets
+          - enhanced optics
+      attributes:
+        any of:
+          - tank ace
+      units:
+        light tank HQ:
+          min: 1
+          max: 1
+          main armament: light cannon
+          secondary armament: 
+            one of:
+              - light MG
+              - AT missle
+        light tank:
+          min: 2
+          max: 4
+          main armament: light cannon
+          secondary armament: 
+            one of:
+              - light MG
+              - AT missle
+    medium tank platoon:
+      min: 1
+      max: 3
+      gear:
+        any of:
+          - camo nets
+          - skirts
+      attributes:
+        any of:
+          - tank ace
+      units:
+        medium tank HQ:
+          min: 1
+          max: 1
+          main armament: medium cannon
+          secondary armament: 
+            one of:
+              - light MG
+              - heavy MG
+          gear:
+            any of:
+              - minesweeper
+        medium tank:
+          min: 2
+          max: 3
+          main armament: medium cannon
+          secondary armament: 
+            one of:
+              - light MG
+              - heavy MG
+          gear:
+            any of:
+              - minesweeper
+        heavy tank:
+          min: 0
+          max: 1
+          main armament: heavy cannon
+          secondary armament: heavy MG
+    heavy tank platoon:
+      min: 0
+      max: 1
+      gear:
+        any of:
+          - camo nets
+          - skirts
+      attributes:
+        any of:
+          - tank ace
+      units:
+        heavy tank HQ:
+          min: 1
+          max: 1
+          main armament: heavy cannon
+          secondary armament: heavy MG
+        heavy tank:
+          min: 1
+          max: 2
+          main armament: heavy cannon
+          secondary armament: heavy MG
+    mechanized engineer platoon:
+      min: 0
+      max: 2
+      gear:
+        any of:
+          - entrenching tools
+          - flak jackets
+      units:
+        mechanized engineer HQ:
+          min: 1
+          max: 1
+          main armament:
+            one of:
+              - carbines
+              - submachine guns
+        mechanized engineer squad:
+          min: 3
+          max: 5
+          main armament:
+            one of:
+              - carbines
+              - rifles
+              - submachine guns 
+          secondary armament:
+            one or none:
+              - AT grenades
+              - light MG
+          gear: 
+            one of:
+              - mines
+              - demining tools
+              - bridge building tools
+              - repair tools
+        troop carrier:
+          min: 4
+          max: 6
+          main armament:
+            one of:
+              - light MG
+              - grenade launcher
+          attributes:
+            - transport
+    self propelled gun detachment:
+      min: 0
+      max: 1
+      units:
+        self propelled gun: 
+          min: 2
+          max: 3
+          main armament: 
+            one of:
+              - medium mortar
+              - MLRS
+          secondary armament: light MG
+        spotter carrier:
+          min: 0
+          max: 1
+          main armament:
+            one of:
+              - light MG
+          attributes:
+            - spotter
+    tank destroyer detachment:
+      min: 0
+      max: 1
+      attributes:
+        one or none:
+          - tank ace
+      gear:
+        any of:
+          - skirts
+      units:
+        tank destroyer:
+          min: 1
+          max: 3
+          main armament: medium cannon
+          secondary armament: light MG
+
+
+artillery:
+
+  gun company:
+    gear:
+      any of:
+        - entrenching tools
+    units:
+      gun team: 
+        min: 2
+        max: 4
+        main armament: 
+          one of:
+            - light mortar
+            - medium mortar
+            - light cannon
+            - medium cannon
+            - howitzer
+        secondary armament: submachine guns
+      gun carrier:
+        min: 0
+        max: 4
+        main armament:
+          one of:
+            - light MG
+        attributes:
+          - resupply
+          - transport
+      spotter carrier:
+        min: 0
+        max: 1
+        main armament:
+          one of:
+            - light MG
+        attributes:
+          - spotter
+
+  self propelled gun company:
+    units:
+      self propelled gun: 
+        min: 2
+        max: 4
+        main armament: 
+          one of:
+            - medium mortar
+            - MLRS
+            - howitzer
+        secondary armament: light MG
+      spotter carrier:
+        min: 0
+        max: 1
+        main armament:
+          one of:
+            - light MG
+        attributes:
+          - spotter
+
+special:
+
+  pathfinder company:
+    attributes:
+      - scouts
+    gear:
+      any of:
+        - mines
+        - entrenching tools
+        - flak jackets
+        - close combat weapons
+        - camo nets
+    units:
+      pathfinder HQ:
+        min: 1
+        max: 1
+        main armament:
+          one of:
+            - carbines
+            - submachine guns
+            - shotguns
+        attributes:
+          - spotter
+
+      pathfinder squad:
+        min: 3
+        max: 4
+        main armament:
+          one of:
+            - carbines
+            - rifles
+            - submachine guns
+            - shotguns
+        secondary armament:
+          one or none:
+            - light MG
+            - AT grenades
+
+      armored car:
+        min: 0
+        max: 5
+        main armament: light MG
+        secondary armament: 
+          one of:
+            - grenade launcher
+            - light MG
+        attributes:
+          - transport
+
+  airborne company:
+    attributes:
+      - scouts
+    gear:
+      any of:
+        - flak jackets
+        - close combat weapons
+        - camo nets
+    units:
+      airborne HQ:
+        min: 1
+        max: 1
+        main armament:
+          one of:
+            - carbines
+            - submachine guns
+            - shotguns
+
+      airborne squad:
+        min: 3
+        max: 4
+        main armament:
+          one of:
+            - carbines
+            - rifles
+            - submachine guns
+            - shotguns
+        secondary armament:
+          one or none:
+            - light MG
+            - AT grenades
+
+  sniper:
+    attributes:
+      - scouts
+    gear: 
+      - ghillie suits
+    units:
+      sniper HQ:
+        min: 1
+        max: 1
+        main armament:
+          one of:
+            - sniper rifle
+            - antimaterial rifle
+        attributes:
+          - spotter
+      sniper:
+        min: 0
+        max: 1
+        main armament:
+          one of:
+            - sniper rifle
+            - antimaterial rifle
