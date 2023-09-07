@@ -1,0 +1,124 @@
+unit_attributes:
+  - id: consripts
+    name: Conscripts
+    description: Conscripts are soldiers who have been drafted into the army.
+  - id: veterans
+    name: Veterans
+    description: Veterans are soldiers who have been in the army for a long time.
+  - id: hq
+    name: hq
+    description: hq units are the command units of a company.
+  - id: commander
+    name: Commander
+    description: Commanders are officers who lead other officers.
+  - id: tank_ace
+    name: Tank Ace
+    description: Tank Aces are tank crewmen who have been in the army for a long time.
+  - id: light
+    name: Light
+    description: Light units are units that are designed to be light.
+  - id: heavy
+    name: Heavy
+    description: Heavy units are units that are designed to be heavy.
+  - id: pioneer
+    name: Pioneer
+    description: Pioneers are engineers who are trained to detect and clear mines.
+  - id: airborne
+    name: Airborne
+    description: Airborne units are soldiers who are trained to be dropped into combat by parachute.
+  - id: stealthy
+    name: Stealthy
+    description: Stealthy units are soldiers who are trained to be stealthy.
+  - id: aquatic
+    name: Aquatic
+    description: Aquatic units are vehicles that are designed to operate in water.
+  - id: supply
+    name: Supply
+    description: Supply units are vehicles that are designed to supply other units.
+soldiers:
+  - id: light_infantryman
+    name: Light Infantryman
+    description: A light infantryman is a soldier who fights on foot, with light equipment and weapons.
+    speed: 6
+    armor: 1
+    cost: 3
+    attributes:
+      - light
+  - id: infantryman
+    name: Infantryman
+    description: An infantryman is a soldier who fights on foot, with heavy equipment and weapons.
+    speed: 5
+    armor: 2
+    cost: 3s
+  - id: crewman
+    name: Crewman
+    description: A crewman is a soldier who operates a tank.
+    speed: 4
+    armor: 0
+    cost: 1
+  - id: officer
+    name: Officer
+    description: An officer is a soldier who leads other soldiers.
+    speed: 6
+    armor: 1
+    cost: 10
+    attributes:
+      - hq
+vehicles:
+  - id: jeep
+    name: Jeep
+    description: A jeep is a light vehicle designed to transport soldiers.
+    speed: 12
+    armor: 1
+    attributes:
+      - light
+  - id: truck
+    name: Truck
+    description: A truck is a vehicle designed to transport guns, supplies and soldiers.
+    speed: 9
+    armor: 2
+  - id: carrier
+    name: Carrier
+    description: A troop carrier is a vehicle designed to transport guns, supplies or soldiers.
+    speed: 7
+    armor: 4
+    attributes:
+      - light
+  - id: armored_car
+    name: Armored Car
+    description: An armored car is a light vehicle designed for surprise attacks and hit and run tactics.
+    speed: 10
+    armor: 4
+    attributes:
+      - light
+  - id: light_tank
+    name: Light Tank
+    description: A light tank is a tank designed to scout enemy lines and harrass enemy infantry and vehicles.
+    speed: 10
+    armor: 5
+    attributes:
+      - light
+  - id: medium_tank
+    name: Medium Tank
+    description: A medium tank is a tank designed support the advance of infantry.
+    speed: 8
+    armor: 7
+  - id: heavy_tank
+    name: Heavy Tank
+    description: A heavy tank is a tank designed to break through enemy lines using extreme firepower and armor.
+    speed: 7
+    armor: 9
+    attributes:
+      - heavy
+  - id: tank_destroyer
+    name: Tank Destroyer
+    description: A tank destroyer is a tank designed to destroy other tanks.
+    speed: 8
+    armor: 6
+  - id: self_propelled_gun
+    name: Self-Propelled Gun
+    description: A self-propelled gun is a vehicle designed to large weapons in an armored chassis.
+    speed: 7
+    armor: 6
+    attributes:
+      - heavy

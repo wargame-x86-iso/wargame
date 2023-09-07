@@ -1,0 +1,5 @@
+type: team
+name: Rifle Squad
+description: A Rifle Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+soldier: infantryman
+size: 5

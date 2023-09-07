@@ -1,0 +1,244 @@
+weapon_attributes:
+  - id: peircing
+    name: Peircing
+    description: Peircing weapons are designed to penetrate armor.
+  - id: suppressive
+    name: Suppressive
+    description: Suppressive weapons are designed to suppress enemy soldiers.
+  - id: heat
+    name: HEAT
+    description: HEAT weapons are designed to penetrate armor.
+  - id: artillery
+    name: Artillery
+    description: Artillery weapons are designed to bombard enemy soldiers.
+weapons:
+  - id: pistol
+    name: Pistol
+    description: A small, concealable weapon for self defense.
+    accuracy: 4
+    range: 4
+    damage: 3
+    rate: 2
+    ammo: 6
+    area: 0
+    cost: 1
+  - id: smg
+    name: Submachine Gun
+    description: Small, cheap and effective against light infantry at close range.
+    accuracy: 5
+    range: 4
+    damage: 3
+    rate: 4
+    ammo: 10
+    area: 0
+    cost: 3
+  - id: shotgun
+    name: Shotgun
+    description: High risk, high reward weapon that can pin down enemies at close range.
+    accuracy: 3
+    range: 4
+    damage: 4
+    rate: 3
+    ammo: 8
+    area: 0
+    cost: 4
+    attributes:
+      - suppressive
+  - id: carbine
+    name: Carbine
+    description: A shorter and cheaper rifle that can be more cost effective against light infantry than the standard rifle.
+    accuracy: 6
+    range: 6
+    damage: 3
+    rate: 3
+    ammo: 10
+    area: 0
+    cost: 4
+  - id: rifle
+    name: Rifle
+    description: Standard issue weapon for dealing with medium to heavy infantry at medium range.
+    accuracy: 7
+    range: 6
+    damage: 4
+    rate: 2
+    ammo: 10
+    area: 0
+    cost: 5
+    attributes:
+      - peircing
+  - id: long_rifle
+    name: Long Rifle
+    description: A marksman variant of the rifle used to keep advancing infantry at bay.
+    accuracy: 8
+    range: 7
+    damage: 4
+    rate: 2
+    ammo: 10
+    area: 0
+    cost: 6
+    attributes:
+      - peircing
+  - id: sniper_rifle
+    name: Sniper Rifle
+    description: A precision rifle for eliminating high value targets and light vehicles.
+    accuracy: 10
+    range: 9
+    damage: 6
+    rate: 1
+    ammo: 7
+    area: 0
+    cost: 25
+    attributes:
+      - piercing
+  - id: lmg
+    name: Light Machine Gun
+    description: A light infantry support weapon.
+    accuracy: 6
+    range: 6
+    damage: 4
+    rate: 4
+    ammo: 7
+    area: 0
+    cost: 12
+    attributes:
+      - piercing
+      - suppressive
+  - id: light_mortar
+    name: Light Mortar
+    description: Inaccurate, but useful for bombarding enemy infantry while remaining out of sight.
+    accuracy: 4
+    range: 7
+    damage: 4
+    rate: 2
+    ammo: 6
+    area: 1
+    cost: 18
+    attributes:
+      - artillery
+  - id: anti_material_rifle
+    name: Anti-Material Rifle
+    description: A large and bulky high calibre rifle capable of penetrating light armor.
+    accuracy: 7
+    range: 6
+    damage: 7
+    rate: 1
+    ammo: 5
+    area: 0
+    cost: 18
+    attributes:
+      - piercing
+  - id: grenade_launcher
+    name: Grenade Launcher
+    description: Belt fed launcher for suppressing mass infantry.
+    accuracy: 5
+    range: 5
+    damage: 4
+    rate: 3
+    ammo: 5
+    area: 1
+    cost: 15
+    attributes:
+      - suppressive
+  - id: anti_tank_rocket
+    name: Anti-Tank Rocket
+    description: A high explosive AT rocket that can dispatch light to medium tanks.
+    accuracy: 6
+    range: 8
+    damage: 7
+    rate: 1
+    ammo: 3
+    area: 0
+    cost: 20
+    attributes:
+      - heat
+  - id: hmg
+    name: Heavy Machine Gun
+    description: A heavy support weapon for suppressing enemy infantry and punching through light vehicles.
+    accuracy: 6
+    range: 7
+    damage: 5
+    rate: 3
+    ammo: 6
+    area: 0
+    cost: 20
+    attributes:
+      - piercing
+      - suppressive
+  - id: medium_mortar
+    name: Medium Mortar
+    description: Can be used to soften entrenched infantry and fortications from long range.
+    accuracy: 6
+    range: 14
+    damage: 6
+    rate: 2
+    ammo: 5
+    area: 2
+    cost: 25
+    attributes:
+      - suppressive
+      - artillery
+  - id: light_cannon
+    name: Light Cannon
+    description: A light AT gun that can destroy light armor at long range.
+    accuracy: 8
+    range: 7
+    damage: 8
+    rate: 2
+    ammo: 7
+    area: 0
+    cost: 25
+    attributes:
+      - peircing
+      - heat
+  - id: medium_cannon
+    name: Medium Cannon
+    description: Long range AT gun used against tanks and enemy fortifications.
+    accuracy: 8
+    range: 10
+    damage: 10
+    rate: 2
+    ammo: 6
+    area: 0
+    cost: 40
+    attributes:
+      - peircing
+      - heat
+  - id: heavy_cannon
+    name: Heavy Cannon
+    description: A large anti-tank cannon effective against the thickest armor and bunker walls.
+    accuracy: 8
+    range: 12
+    damage: 12
+    rate: 1
+    ammo: 6
+    area: 1
+    cost: 60
+    attributes:
+      - peircing
+      - heat
+  - id: howitzer
+    name: Howitzer
+    description: A large artillery piece for bombarding enemy fortifications from extreme ranges.
+    accuracy: 8
+    range: 24
+    damage: 12
+    rate: 1
+    ammo: 6
+    area: 2
+    cost: 100
+    attributes:
+      - suppressive
+      - artillery
+  - id: mlrs
+    name: MLRS
+    description: Uses multiple rockets to clear mass infantry and light vehicles from across the battlefield.
+    accuracy: 5
+    range: 18
+    damage: 6
+    rate: 3
+    ammo: 6
+    area: 3
+    cost: 120
+    attributes:
+      - suppressive
+      - artillery

@@ -1,5 +1,3 @@
-import { Scroll } from '../components'
-
 import { EditorContextProvider } from './context'
 import { EditorControls } from './controls'
 import { EditorLayout } from './layout'
@@ -15,13 +13,7 @@ export function Editor(props: EditorProps) {
       <EditorLayout
         header={props.renderBackButton(<p>Back</p>)}
         controls={<EditorControls />}
-        map={
-          <Scroll.Wrapper>
-            <Scroll.Inner>
-              <EditorMap />
-            </Scroll.Inner>
-          </Scroll.Wrapper>
-        }
+        map={<EditorMap />}
       />
     </EditorContextProvider>
   )

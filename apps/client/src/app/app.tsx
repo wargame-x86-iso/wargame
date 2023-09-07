@@ -2,6 +2,7 @@ import { Route, Routes, Link } from 'react-router-dom'
 import { useWindowSize } from '@uidotdev/usehooks'
 
 import { Editor } from './editor'
+import { Armory } from './armory'
 
 export function App() {
   const size = useWindowSize()
@@ -18,7 +19,9 @@ export function App() {
           path='/'
           element={
             <div>
-              This is the generated root route. <Link to='/editor'>Editor</Link>
+              <Link to='/armory'>Armory</Link>
+              <br />
+              <Link to='/editor'>Map Editor</Link>
             </div>
           }
         />
@@ -30,6 +33,7 @@ export function App() {
             />
           }
         />
+        <Route path='/armory' element={<Armory />} />
       </Routes>
     </div>
   )

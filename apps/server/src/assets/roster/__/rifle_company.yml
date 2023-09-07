@@ -1,0 +1,179 @@
+company:
+  units:
+    - id: rifle_company_hq
+      type: team
+      name: Rifle Company HQ
+      description: The Rifle Company HQ is the command unit of a Rifle Company.
+      soldier: officer
+      size: 3
+    - id: rifle_squad
+      type: team
+      name: Rifle Squad
+      description: A Rifle Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 5
+    - id: grenadiers
+      type: team
+      name: Grenadiers
+      description: A Grenadier is a soldier that fights on foot, with light equipment and weapons.
+      soldier: light_infantryman
+      size: 5
+    - id: light_machine_gun_team
+      type: team
+      name: Light Machine Gun Team
+      description: A Light Machine Gun Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 3
+    - id: grenadier_mortar_team
+      type: team
+      name: Grenadier Mortar Team
+      description: A Light Mortar Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: light_infantryman
+      size: 3
+    - id: mortar_team
+      type: team
+      name: Mortar Team
+      description: A Mortar Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 3
+    - id: heavy_machine_gun_team
+      type: team
+      name: Heavy Machine Gun Team
+      description: A Heavy Machine Gun Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 3
+    - id: anti_tank_team
+      type: team
+      name: Anti-Tank Team
+      description: An Anti-Tank Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 3
+    - id: marksmen
+      type: team
+      name: Marksmen
+      description: A Marksman is a soldier that fights on foot, with light equipment and weapons.
+      soldier: rifleman
+      size: 4
+    - id: rifle_engineers
+      type: team
+      name: Rifle Engineers
+      description: An Engineer is a soldier that fights on foot, with light equipment and weapons.
+      soldier: light_infantry
+      size: 4
+    - id: recon_team
+      type: team
+      name: Recon Squad
+      description: A Recon Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: light_infantry
+      size: 4
+    - id: sniper_team
+      type: team
+      name: Sniper Team
+      description: A Sniper Squad is a team of soldiers that fight on foot, with light equipment and weapons.
+      soldier: infantryman
+      size: 2
+    - id: light_tank
+      type: vehicle
+      name: Light Tank
+      description: A Light Tank is a vehicle that is designed to fight other vehicles.
+      vehicle: light_tank
+      crew: 3
+      soldier: crewman
+      transport: 0
+    - id: medium_tank
+      type: vehicle
+      name: Medium Tank
+      description: A Medium Tank is a vehicle that is designed to fight other vehicles.
+      vehicle: medium_tank
+      crew: 4
+      soldier: crewman
+      transport: 0
+
+groups:
+  - id: company_hq
+    name: Company HQ
+    units:
+      - id: rifle_company_hq
+        attributes:
+          - commander
+        armament:
+          one_of:
+            - id: pistol
+            - id: smg
+            - id: rifle
+  - id: rifle_platoon
+    name: Rifle Platoon
+    units:
+      - many:
+          min: 4
+          max: 6
+          of:
+            - id: rifle_squad
+              armament:
+                one_of:
+                  - id: rifle
+                  - id: carbine
+      - many:
+          min: 0
+          max: 3
+          of:
+            - id: light_machine_gun_team
+              armaments:
+                - id: light_machine_gun
+            - id: mortar_team
+              attributes:
+                - heavy
+              armaments:
+                - id: light_mortar
+            - id: anti_tank_team
+              attributes:
+                - heavy
+              armaments:
+                - id: anti_tank_gun
+options:
+  all_of:
+    - id: company_hq
+      name: Company HQ
+      units:
+        one:
+          id: rifle_company_hq
+          armament:
+            one_of:
+              - id: pistol
+              - id: smg
+              - id: rifle
+          attributes:
+            - commander
+    - many:
+        min: 2
+        max: 5
+        of:
+          - id: rifle_platoon
+            name: Rifle Platoon
+            units:
+              all_of:
+                - many:
+                    min: 4
+                    max: 6
+                    of:
+                      - id: rifle_squad
+                        armament:
+                          one_of:
+                            - id: rifle
+                            - id: carbine
+                        attributes:
+                          - squad
+          - id: grenadier_platoon
+            name: Grenadier Platoon
+            units:
+              many:
+                min: 4
+                max: 6
+                of:
+                  - id: grenadiers
+                    armament:
+                      one_of:
+                        - id: carbine
+                        - id: smg
+                    attributes:
+                      - squad

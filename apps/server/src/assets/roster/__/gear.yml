@@ -1,0 +1,64 @@
+team_gear:
+  - id: at_grenades
+    name: Anti-Tank Grenade
+    description: A hand thrown grenade that can disable light to medium tanks.
+    type: one_shot
+  - id: ap_mine
+    name: Anti-Personnel Mine
+    description: A small explosive device that can be placed on the ground to damage infantry.
+    type: one_shot
+  - id: at_mine
+    name: Anti-Tank Mine
+    description: A small explosive device that can be placed on the ground to damage tanks.
+    type: one_shot
+  - id: advanced_optics
+    name: Advanced Optics
+    description: Advanced optics increase the accuracy of the unit.
+    type: passive
+  - id: scanners
+    name: Scanner
+    description: Scanners increase the chance of detecting concealed units.
+    type: passive
+  - id: camouflage_net
+    name: Camouflage Net
+    description: A camouflage net that can conceal the unit from enemy sight.
+    type: passive
+  - id: bridge_building_tools
+    name: Bridge Building Tools
+    description: A set of tools that can be used to build bridges.
+    type: one_shot
+  - id: repair_kit
+    name: Repair Kit
+    description: A repair kit that can be used to repair damaged vehicles.
+    type: one_shot
+  - id: silencers
+    name: Silencer
+    description: Silencers reduce the chance of a unit being revealed when firing.
+    type: passive
+  - id: entrenching_tools
+    name: Entrenching Tools
+    description: A set of tools that can be used to dig trenches.
+    type: one_shot
+  - id: flak_jackets
+    name: Flak Jacket
+    description: Flak jackets add armor to the unit.
+    type: passive
+  - id: gun_shields
+    name: Gun Shield
+    description: Gun shields add armor to the heavy weapons teams.
+vehicle_gear:
+  - id: ceramic_armor
+    name: Ceramic Armor
+    description: Ceramic armor that can be used to protect the vehicle from explosions.
+  - id: minesweeper
+    name: Minesweeper
+    description: A minesweeper that detonates mines in front of the vehicle.
+  - id: bridge_building_tools
+    name: Bridge Building Tools
+    description: A set of tools that can be used to build bridges.  
+  - id: advanced_optics
+    name: Advanced Optics
+    description: Advanced optics that increase the accuracy of the unit.
+  - id: scanners
+    name: Scanner
+    description: A scanner that can detect concealed units
