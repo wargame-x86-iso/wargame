@@ -5,12 +5,12 @@ import { pipe } from '@effect/data/Function'
 import { Path, PlayerId, PlayerOrder, Position, UnitId } from '../model'
 import { InmemoryGame } from '../game.impl'
 
-import { applyMoveAction } from './apply-move'
+import { handleMove } from './move'
 
 describe('applyMoveAction', () => {
   it('should fail if the unit is not at the specified starting position', async () => {
     const result = await pipe(
-      applyMoveAction({
+      handleMove({
         type: 'move',
         unitId: UnitId('unit-1'),
         path: Path([Position([-1, 0, 1]), Position([0, 0, 0])]),
@@ -56,7 +56,7 @@ describe('applyMoveAction', () => {
   })
   it('should fail if path is not connected', async () => {
     const result = await pipe(
-      applyMoveAction({
+      handleMove({
         type: 'move',
         unitId: UnitId('unit-1'),
         path: Path([Position([-1, 0, 1]), Position([1, 1, 1])]),

@@ -2,7 +2,7 @@ import * as T from 'effect/Effect'
 import * as C from 'effect/Context'
 
 import {
-  Action,
+  Command,
   PlayerId,
   UnitId,
   Position,
@@ -25,7 +25,7 @@ export interface Game {
     unitId: UnitId,
     n: number
   ) => T.Effect<never, never, void>
-  saveAction: (action: Action) => T.Effect<never, never, void>
+  saveAction: (action: Command) => T.Effect<never, never, void>
   lookupCurrentTurn: () => T.Effect<never, never, TurnState>
   savePastTurn: (turn: TurnState) => T.Effect<never, never, void>
   replaceCurrentTurn: (turn: TurnState) => T.Effect<never, never, void>

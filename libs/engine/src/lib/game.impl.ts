@@ -20,7 +20,7 @@ import {
   currentTurn,
   currentPlayer,
   currentTurnActions,
-  Action,
+  Command,
   TurnState,
   pastTurns,
 } from './model'
@@ -60,7 +60,7 @@ class InmemoryGameImpl implements Game {
       Ref.update(pipe(subtract(n), OP.modify(unitActionPointsOf(unitId))))
     )
   }
-  saveAction(action: Action) {
+  saveAction(action: Command) {
     return pipe(
       this.ref,
       Ref.update(pipe(A.append(action), OP.modify(currentTurnActions)))

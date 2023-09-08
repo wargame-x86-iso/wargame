@@ -1,9 +1,9 @@
 import * as T from 'effect/Effect'
 
-import { EndTurnAction, TurnState } from '../model'
+import { EndTurn, TurnState } from '../model'
 import { Game } from '../game'
 
-export const applyEndTurnAction = (action: EndTurnAction) =>
+export const handleEndTurn = (action: EndTurn) =>
   T.gen(function* (_) {
     const game = yield* _(Game)
     const nextPlayer = yield* _(game.lookupNextPlayer())

@@ -1,11 +1,11 @@
 import * as A from 'effect/ReadonlyArray'
 import * as T from 'effect/Effect'
 
-import { MoveAction, positionEq } from '../model'
+import { Move, positionEq } from '../model'
 import { pathIsConnected } from '../search'
 import { Game } from '../game'
 
-export const applyMoveAction = (action: MoveAction) =>
+export const handleMove = (action: Move) =>
   T.gen(function* (_) {
     const game = yield* _(Game)
 

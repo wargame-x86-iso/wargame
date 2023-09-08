@@ -1,15 +1,15 @@
 import { UnitId, Path, PlayerId } from './brands'
 
-export interface MoveAction {
+export interface Move {
   type: 'move'
   playerId: PlayerId
   unitId: UnitId
   path: Path
 }
 
-export interface EndTurnAction {
+export interface EndTurn {
   type: 'endTurn'
   playerId: PlayerId
 }
 
-export type Action = MoveAction | EndTurnAction
+export type Command = Move | EndTurn

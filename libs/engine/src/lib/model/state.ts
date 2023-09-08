@@ -2,7 +2,7 @@ import * as R from 'effect/ReadonlyRecord'
 import * as OP from '@fp-ts/optic'
 
 import { UnitId, PlayerId, PlayerOrder, Position } from './brands'
-import { Action } from './actions'
+import { Command } from './commands'
 
 export interface UnitState {
   id: UnitId
@@ -15,7 +15,7 @@ export interface UnitState {
 export interface TurnState {
   number: number
   playerId: PlayerId
-  actions: Action[]
+  actions: Command[]
 }
 
 export interface GameState {
