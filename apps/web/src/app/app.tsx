@@ -3,6 +3,7 @@ import { useWindowSize } from '@uidotdev/usehooks'
 
 import { Editor } from './editor'
 import { Armory } from './armory'
+import { Game } from './game'
 
 export function App() {
   const size = useWindowSize()
@@ -22,6 +23,8 @@ export function App() {
               <Link to='/armory'>Armory</Link>
               <br />
               <Link to='/editor'>Map Editor</Link>
+              <br />
+              <Link to='/game'>Game</Link>
             </div>
           }
         />
@@ -34,6 +37,7 @@ export function App() {
           }
         />
         <Route path='/armory' element={<Armory />} />
+        <Route path='/game' element={<Game />} />
       </Routes>
     </div>
   )

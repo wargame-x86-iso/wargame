@@ -1,7 +1,7 @@
 import * as R from 'effect/ReadonlyRecord'
 import * as OP from '@fp-ts/optic'
 
-import { UnitId, PlayerId, PlayerOrder, Position } from './brands'
+import { UnitId, PlayerId, Position } from './brands'
 import { Command } from './commands'
 
 export interface UnitState {
@@ -20,8 +20,8 @@ export interface TurnState {
 
 export interface GameState {
   unitStates: R.ReadonlyRecord<UnitState>
-  pastTurns: TurnState[]
   currentTurn: TurnState
+  pastTurns: TurnState[]
 }
 
 export const unitStates = OP.lens(
