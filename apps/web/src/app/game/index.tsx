@@ -1,3 +1,12 @@
+import { GameBoard } from './board'
+import { GameLayout } from './layout'
+
 export function Game() {
-  return <div>Game</div>
+  return (
+    <GameLayout
+      map={<GameBoard />}
+      header={<div>Game</div>}
+      controls={<div>Controls</div>}
+    />
+  )
 }

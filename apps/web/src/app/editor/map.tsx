@@ -21,7 +21,7 @@ export function EditorMap() {
   const ctx = useContext(EditorContext)
   return (
     <Layer zIndex={1}>
-      <HexGrid
+      {/* <HexGrid
         width={ctx.width}
         height={ctx.height}
         strokeWeight={1}
@@ -31,7 +31,7 @@ export function EditorMap() {
           fill: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
           stroke: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
         }}
-      />
+      /> */}
     </Layer>
   )
 }
