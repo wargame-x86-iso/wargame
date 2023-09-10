@@ -49,22 +49,23 @@ export function HexGrid() {
     )
   })
 
-  return (
-    <div className="App container-fluid bg-black text-light p-4">
-      <div className="row" id="header">
-        <div className="col-12">
-          <nav id="nav-bar" className='col-12'>{navBar}</nav>
-          <h1>Hexboard Maker</h1>
-        </div>
-        <h2 className="bg-gray border">{chosenGameBoard.title}</h2>
-      </div>
-      <div className="row" id="page-content-row">
-        <ErrorBoundary>
-          {chosenGameBoard.GameBoard}
-        </ErrorBoundary>
-      </div>
-      <a href='https://www.redblobgames.com/grids/hexagons/'>Special thanks to Red Blob Games!</a>
+  return <CreateBoard />
+  // return (
+  //   <div className="App container-fluid bg-black text-light p-4">
+  //     <div className="row" id="header">
+  //       <div className="col-12">
+  //         <nav id="nav-bar" className='col-12'>{navBar}</nav>
+  //         <h1>Hexboard Maker</h1>
+  //       </div>
+  //       <h2 className="bg-gray border">{chosenGameBoard.title}</h2>
+  //     </div>
+  //     <div className="row" id="page-content-row">
+  //       <ErrorBoundary>
+  //         {chosenGameBoard.GameBoard}
+  //       </ErrorBoundary>
+  //     </div>
+  //     <a href='https://www.redblobgames.com/grids/hexagons/'>Special thanks to Red Blob Games!</a>
 
-    </div>
-  )
+  //   </div>
+  // )
 }

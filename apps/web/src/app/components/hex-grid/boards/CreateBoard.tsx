@@ -11,7 +11,7 @@ import { clickMessage } from "../helpers/hexFunctions";
 
 export default function CreateBoard(props: any) {
 	// <> States that control canvas parameters
-	const [hexRadius, SEThexRadius] = useState(200);
+	const [hexRadius, SEThexRadius] = useState(20);
 	const [separationMultiplier, SETseparationMultiplier] = useState(1.1)
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [defaultOrientation, SETdefaultOrientation] = useState(hexOrientations["flat-top"])
@@ -85,7 +85,7 @@ export default function CreateBoard(props: any) {
 	const [canvasWidth, SETcanvasWidth] = useState(canvasHeight * aspectRatio())
 	// Since this is a centered board, we can calculate the origin based on the height and width
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [hexGridOrigin, SEThexGridOrigin] = useState({ x: canvasWidth / 2, y: canvasHeight / 2 });
+	const [hexGridOrigin, SEThexGridOrigin] = useState({ x: canvasWidth /2 , y: canvasHeight /2 });
 
 	const canvasGlobals = {
 		canvasWidth, canvasHeight, hexGridOrigin,
