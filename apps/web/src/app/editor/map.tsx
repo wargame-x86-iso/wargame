@@ -21,17 +21,17 @@ export function EditorMap() {
   const ctx = useContext(EditorContext)
   return (
     <Layer zIndex={1}>
-      {/* <HexGrid
-        width={ctx.width}
-        height={ctx.height}
-        strokeWeight={1}
-        background='black'
-        onClick={ctx.setTiles}
-        render={{
-          fill: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
-          stroke: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
-        }}
-      /> */}
+      <HexGrid
+        // width={ctx.width}
+        // height={ctx.height}
+        // strokeWeight={1}
+        // background='black'
+        // onClick={ctx.setTiles}
+        // render={{
+        //   fill: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
+        //   stroke: (x, y) => chooseTileColor(ctx.lookupTile(x, y)),
+        // }}
+      />
     </Layer>
   )
 }

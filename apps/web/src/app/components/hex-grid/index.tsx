@@ -17,7 +17,7 @@ import SavedBoard from './boards/SavedBoard';
 import CreateBoard from './boards/CreateBoard';
 
 export function HexGrid() {
-
+  console.log('HexGrid')
   // <> Global constants for choosing a game
   const options: ({
     key: string;
