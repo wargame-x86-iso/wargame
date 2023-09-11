@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { Layer } from '../components'
+import { Layer } from '../../components'
 
 import { EditorContext, MapTiles } from './context'
 

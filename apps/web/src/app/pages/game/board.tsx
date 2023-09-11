@@ -2,8 +2,8 @@ import { Graphics as PixiGraphics, TextStyle } from 'pixi.js'
 import { Stage, Graphics, Container, Text } from '@pixi/react'
 import { useCallback, useContext } from 'react'
 
-import { HexGridContext } from '../hex-grid'
-import { PixiViewport } from '../components'
+import { HexGridContext } from '../../context/hex-grid'
+import { PixiViewport } from '../../components'
 
 export interface PolygonProps {
   path: number[]

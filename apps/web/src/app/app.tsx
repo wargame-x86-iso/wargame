@@ -1,9 +1,7 @@
 import { Route, Routes, Link } from 'react-router-dom'
 import { useWindowSize } from 'usehooks-ts'
 
-import { Editor } from './editor'
-import { Armory } from './armory'
-import { Game } from './game'
+import { Armory, Editor, Game } from './pages'
 
 export function App() {
   const size = useWindowSize()

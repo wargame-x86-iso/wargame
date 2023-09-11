@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react'
-import { with2DRange } from '../utils'
+import { with2DRange } from '../../utils'
 
 export const MapTiles = {
   empty: 0,

@@ -1,6 +1,6 @@
 import { AppBar, Box, Toolbar } from '@mui/material'
 
-import { Scroll } from '../components'
+import { Scroll } from '../../components'
 
 export interface EditorLayoutProps {
   map: React.ReactNode

@@ -1,13 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable eqeqeq */
 import { useEffect } from 'react'
-import { useElementSize } from 'usehooks-ts'
 
-import { HexGridContextProvider } from '../hex-grid'
-
-import { GameBoard } from './board'
-import { GameLayout } from './layout'
-
-function usePreventZoom(scrollCheck = true, keyboardCheck = true) {
+export function usePreventZoom(scrollCheck = true, keyboardCheck = true) {
   useEffect(() => {
     const handleKeydown = (e: any) => {
       if (
@@ -38,19 +33,4 @@ function usePreventZoom(scrollCheck = true, keyboardCheck = true) {
       document.removeEventListener('wheel', handleWheel)
     }
   }, [scrollCheck, keyboardCheck])
-}
-
-export function Game() {
-  const [squareRef, { width, height }] = useElementSize()
-  usePreventZoom()
-  return (
-    <HexGridContextProvider hexSize={24} boardSize={10}>
-      <GameLayout
-        mapContainerRef={squareRef}
-        map={<GameBoard width={width} height={height} />}
-        header={<div>Game</div>}
-        controls={<div>Controls</div>}
-      />
-    </HexGridContextProvider>
-  )
 }

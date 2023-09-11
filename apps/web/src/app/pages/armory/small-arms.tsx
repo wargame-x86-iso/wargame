@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { GridLayout } from '../components'
+import { GridLayout } from '../../components'
 
 import { ArmoryContext } from './context'
 import { WeaponCard } from './weapon-card'

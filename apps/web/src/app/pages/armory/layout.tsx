@@ -1,6 +1,6 @@
 import { AppBar, Box, Toolbar, Typography } from '@mui/material'
 
-import { Scroll } from '../components'
+import { Scroll } from '../../components'
 
 export interface ArmoryLayoutProps {
   smallArms: React.ReactNode
