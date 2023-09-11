@@ -68,6 +68,21 @@ export function area(
   return results
 }
 
+export function box(width: number, height: number): AxialCoordinate[] {
+  const results: AxialCoordinate[] = []
+  let offset = 0
+  for (let h = 0; h < height; h++) {
+    for (let w = 0; w < width; w++) {
+      results.push(AxialCoordinate([w - offset, h]))
+      results.push(AxialCoordinate([w - offset, h + 1]))
+    }
+    if (h % 2 === 0) {
+      offset++
+    }
+  }
+  return results
+}
+
 export function makeCartesianConversion(
   orientation: Orientation,
   hexRadius: number,

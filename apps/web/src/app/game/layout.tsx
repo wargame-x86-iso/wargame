@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar } from '@mui/material'
+import { Box } from '@mui/material'
 
 export interface GameLayoutProps {
   map: React.ReactNode
@@ -28,7 +28,9 @@ export function GameLayout(props: GameLayoutProps) {
           {props.map}
         </Box>
       </Box>
-      <Box height={200}>{props.controls}</Box>
+      <Box height={200} sx={{ background: '#333' }}>
+        {props.controls}
+      </Box>
     </Box>
   )
 }

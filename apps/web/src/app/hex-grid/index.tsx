@@ -9,6 +9,7 @@ import {
   makeCartesianConversion,
   area,
   makePolygonConverter,
+  box,
 } from '@wargame/hex'
 
 export interface HexGridContext {
@@ -40,7 +41,7 @@ export function HexGridContextProvider(props: HexGridContextProviderProps) {
     CartesianCoordiate([200, 200])
   )
   const getPolygonPath = makePolygonConverter(orientation)
-  const hexes = area(AxialCoordinate([0, 0]), props.boardSize)
+  const hexes = box(20, 20)
   const makeHexGridTable = R.fromIterable((hex: AxialCoordinate) => {
     const key = axialToString(hex)
     const center = convertToCartesian(hex)
