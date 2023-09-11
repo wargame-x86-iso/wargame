@@ -1,7 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select, Stack } from '@mui/material'
 import { useContext } from 'react'
 
-import { MapTiles } from '@wargame/roster'
+import { MapTiles } from '@wargame/map'
 
 import { EditorContext } from './context'
 

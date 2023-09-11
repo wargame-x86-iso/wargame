@@ -2,7 +2,7 @@ import * as R from 'effect/ReadonlyRecord'
 import { createContext, useCallback, useState } from 'react'
 
 import { AxialCoordinate, area, axialToString, box } from '@wargame/hex'
-import { MapTiles } from '@wargame/roster'
+import { MapTiles } from '@wargame/map'
 
 import { HexGridContextProvider } from '../../context'
 

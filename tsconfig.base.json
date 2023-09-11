@@ -18,6 +18,7 @@
     "paths": {
       "@wargame/engine": ["libs/engine/src/index.ts"],
       "@wargame/hex": ["libs/hex/src/index.ts"],
+      "@wargame/map": ["libs/map/src/index.ts"],
       "@wargame/roster": ["libs/roster/src/index.ts"]
     }
   },

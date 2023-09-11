@@ -1,4 +1,4 @@
-import { MapTiles } from '@wargame/roster'
+import { MapTiles } from '@wargame/map'
 
 import { Polygon } from '../components'
 
