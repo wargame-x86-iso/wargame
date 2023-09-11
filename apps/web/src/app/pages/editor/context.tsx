@@ -2,7 +2,7 @@ import * as R from 'effect/ReadonlyRecord'
 import { createContext, useCallback, useState } from 'react'
 
 import { AxialCoordinate, area, axialToString, box } from '@wargame/hex'
-import { MapTiles } from '@wargame/map'
+import { MapTiles, noisyElevationMap } from '@wargame/map'
 
 import { HexGridContextProvider } from '../../context'
 
@@ -70,8 +70,9 @@ export function EditorContextProvider(props: EditorContextProviderProps) {
   const [width, setWidth] = useState(props.initialWidth)
   const [height, setHeight] = useState(props.initialHeight)
   const hexes = box(width, height)
+  const noiseyMap = noisyElevationMap(hexes, 1)
   const initialMap = makeMap(hexes, MapTiles.empty)
-  const [map, setMap] = useState<MapState>(initialMap)
+  const [map, setMap] = useState<MapState>(noiseyMap)
   const [brushSize, setBrushSize] = useState(3)
   const [selectedTileType, setSelectedTileType] = useState<MapTiles>(
     MapTiles.forest

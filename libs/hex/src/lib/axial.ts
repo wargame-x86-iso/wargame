@@ -8,11 +8,15 @@ import {
 } from './model'
 
 export function neighbor(
-  [cQ, cR]: AxialCoordinate,
+  c: AxialCoordinate,
   direction: AxialDirectionName
 ): AxialCoordinate {
-  const [dQ, dR] = AxialDirections[direction]
-  return AxialCoordinate([cQ + dQ, cR + dR])
+  const d = AxialDirections[direction]
+  return add(c, d)
+}
+
+export function neighbors(c: AxialCoordinate): AxialCoordinate[] {
+  return Object.values(AxialDirections).map((d) => add(c, d))
 }
 
 export function add(

@@ -12,6 +12,8 @@ function chooseTileColor(type: MapTiles) {
       return '#adada5'
     case 'water':
       return '#4a8df7'
+    case 'mountain':
+      return '#a3a336'
   }
 }
 

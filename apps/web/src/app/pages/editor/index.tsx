@@ -15,7 +15,7 @@ export function Editor(props: EditorProps) {
   const [squareRef, { width, height }] = useElementSize()
   usePreventZoom()
   return (
-    <EditorContextProvider initialHeight={19} initialWidth={29}>
+    <EditorContextProvider initialHeight={29} initialWidth={39}>
       <EditorLayout
         mapContainerRef={squareRef}
         header={props.renderBackButton(<p>Back</p>)}

@@ -4,21 +4,11 @@
   "sourceRoot": "libs/map/src",
   "projectType": "library",
   "targets": {
-    "build": {
-      "executor": "@nx/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/libs/map",
-        "main": "libs/map/src/index.ts",
-        "tsConfig": "libs/map/tsconfig.lib.json",
-        "assets": ["libs/map/*.md"]
-      }
-    },
     "lint": {
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/map/**/*.ts", "libs/map/package.json"]
+        "lintFilePatterns": ["libs/map/**/*.ts"]
       }
     },
     "test": {

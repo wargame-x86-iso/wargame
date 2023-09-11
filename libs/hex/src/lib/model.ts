@@ -20,12 +20,16 @@ export type CartesianCoordiate = [number, number] &
 export const CartesianCoordiate = B.nominal<CartesianCoordiate>()
 
 export const cartesianToString = ([x, y]: CartesianCoordiate) => `${x},${y}`
+export const stringToCartesian = (s: string) =>
+  AxialCoordinate(s.split(',').map(Number) as [number, number])
 
 // Q R Coordinate
 export type AxialCoordinate = [number, number] & B.Brand<'AxialCoordinate'>
 export const AxialCoordinate = B.nominal<AxialCoordinate>()
 
 export const axialToString = ([q, r]: AxialCoordinate) => `${q},${r}`
+export const stringToAxial = (s: string) =>
+  AxialCoordinate(s.split(',').map(Number) as [number, number])
 
 export const AxialDirections = {
   UP: AxialCoordinate([1, 0]),
