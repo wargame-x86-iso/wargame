@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@wargame/engine": ["libs/engine/src/index.ts"],
+      "@wargame/hex": ["libs/hex/src/index.ts"],
       "@wargame/roster": ["libs/roster/src/index.ts"]
     }
   },
