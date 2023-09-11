@@ -1,52 +1,56 @@
-import { createContext, useState } from 'react'
-import { with2DRange } from '../../utils'
+import * as R from 'effect/ReadonlyRecord'
+import { createContext, useCallback, useState } from 'react'
 
-export const MapTiles = {
-  empty: 0,
-  water: 1,
-  road: 2,
-  forest: 3,
-} as const
+import { AxialCoordinate, area, axialToString, box } from '@wargame/hex'
+import { MapTiles } from '@wargame/roster'
 
-export type MapTiles = (typeof MapTiles)[keyof typeof MapTiles]
+import { HexGridContextProvider } from '../../context'
 
 export interface MapState {
   [key: string]: MapTiles
 }
 
 export interface EditorContext {
-  lookupTile: (x: number, y: number) => MapTiles
-  setTiles: (x: number, y: number) => void
-  brushSize: number
-  setBrushSize: (size: number) => void
-  width: number
-  setWidth: (width: number) => void
-  height: number
-  setHeight: (height: number) => void
-  selectedTileType: MapTiles
-  setSelectedTileType: (tile: MapTiles) => void
+  brush: {
+    size: number
+    tile: MapTiles
+    onTileChange: (v: MapTiles) => void
+    onSizeChange: (v: number) => void
+    onDrag: (v: AxialCoordinate) => void
+  }
+  map: {
+    width: number
+    height: number
+    tiles: MapState
+    onWidthChange: (v: number) => void
+    onHeightChange: (v: number) => void
+  }
 }
 
 export const EditorContext = createContext<EditorContext>({
-  lookupTile: () => MapTiles.empty,
-  setTiles: () => {
-    return
+  brush: {
+    size: 1,
+    tile: MapTiles.empty,
+    onTileChange: () => {
+      return
+    },
+    onSizeChange: () => {
+      return
+    },
+    onDrag: () => {
+      return
+    },
   },
-  brushSize: 1,
-  setBrushSize: () => {
-    return
-  },
-  width: 0,
-  setWidth: () => {
-    return
-  },
-  height: 0,
-  setHeight: () => {
-    return
-  },
-  selectedTileType: MapTiles.empty,
-  setSelectedTileType: () => {
-    return
+  map: {
+    width: 0,
+    height: 0,
+    tiles: {},
+    onWidthChange: () => {
+      return
+    },
+    onHeightChange: () => {
+      return
+    },
   },
 })
 
@@ -56,43 +60,55 @@ export interface EditorContextProviderProps {
   initialHeight: number
 }
 
+const makeMap = (hexes: AxialCoordinate[], tile: MapTiles) =>
+  R.fromIterable((hex: AxialCoordinate) => {
+    const key = axialToString(hex)
+    return [key, tile]
+  })(hexes)
+
 export function EditorContextProvider(props: EditorContextProviderProps) {
-  const [map, setMap] = useState<MapState>({})
   const [width, setWidth] = useState(props.initialWidth)
   const [height, setHeight] = useState(props.initialHeight)
-  const [brushSize, setBrushSize] = useState(1)
+  const hexes = box(width, height)
+  const initialMap = makeMap(hexes, MapTiles.empty)
+  const [map, setMap] = useState<MapState>(initialMap)
+  const [brushSize, setBrushSize] = useState(3)
   const [selectedTileType, setSelectedTileType] = useState<MapTiles>(
-    MapTiles.empty
+    MapTiles.forest
   )
-  const lookupTile = (x: number, y: number) =>
-    map[`${x},${y}`] || MapTiles.empty
-  const setTiles = (x: number, y: number) => {
-    setMap(
-      with2DRange(brushSize, brushSize, (dx, dy) => [dx, dy] as const).reduce(
-        (acc, [dx, dy]) => ({
-          ...acc,
-          [`${x + dx},${y + dy}`]: selectedTileType,
-        }),
-        map
-      )
-    )
-  }
+  const onBrushDrag = useCallback(
+    (v: AxialCoordinate) => {
+      const hexes = area(v, brushSize)
+      const update = makeMap(hexes, selectedTileType)
+      setMap((map) => ({
+        ...map,
+        ...update,
+      }))
+    },
+    [brushSize, selectedTileType]
+  )
   return (
     <EditorContext.Provider
       value={{
-        lookupTile,
-        setTiles,
-        brushSize,
-        setBrushSize,
-        width,
-        setWidth,
-        height,
-        setHeight,
-        selectedTileType,
-        setSelectedTileType,
+        brush: {
+          size: brushSize,
+          tile: selectedTileType,
+          onTileChange: setSelectedTileType,
+          onSizeChange: setBrushSize,
+          onDrag: onBrushDrag,
+        },
+        map: {
+          width,
+          onWidthChange: setWidth,
+          onHeightChange: setHeight,
+          height,
+          tiles: map,
+        },
       }}
     >
-      {props.children}
+      <HexGridContextProvider hexSize={24} hexes={hexes}>
+        {props.children}
+      </HexGridContextProvider>
     </EditorContext.Provider>
   )
 }

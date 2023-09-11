@@ -1,21 +1,23 @@
 import { FormControl, InputLabel, MenuItem, Select, Stack } from '@mui/material'
 import { useContext } from 'react'
 
-import { EditorContext, MapTiles } from './context'
+import { MapTiles } from '@wargame/roster'
+
+import { EditorContext } from './context'
 
 const MapTileKeys = Object.keys(MapTiles) as (keyof typeof MapTiles)[]
 
 export function EditorControls() {
-  const ctx = useContext(EditorContext)
+  const editor = useContext(EditorContext)
   return (
     <Stack spacing={2} padding={2}>
       <FormControl fullWidth>
         <InputLabel>Brush Type</InputLabel>
         <Select
-          value={ctx.selectedTileType}
+          value={editor.brush.tile}
           label='Brush Type'
           onChange={(ev) =>
-            ctx.setSelectedTileType(Number(ev.target.value) as MapTiles)
+            editor.brush.onTileChange(String(ev.target.value) as MapTiles)
           }
         >
           {MapTileKeys.map((key) => (
@@ -28,9 +30,9 @@ export function EditorControls() {
       <FormControl fullWidth>
         <InputLabel>Brush Size</InputLabel>
         <Select
-          value={ctx.brushSize}
+          value={editor.brush.size}
           label='Brush Size'
-          onChange={(ev) => ctx.setBrushSize(Number(ev.target.value))}
+          onChange={(ev) => editor.brush.onSizeChange(Number(ev.target.value))}
         >
           {Array.from({ length: 10 }).map((_, i) => (
             <MenuItem key={i} value={i + 1}>
@@ -42,13 +44,13 @@ export function EditorControls() {
       <FormControl fullWidth>
         <InputLabel>Map Width</InputLabel>
         <Select
-          value={ctx.width}
+          value={editor.map.width}
           label='Map Width'
-          onChange={(ev) => ctx.setWidth(Number(ev.target.value))}
+          onChange={(ev) => editor.map.onWidthChange(Number(ev.target.value))}
         >
           {Array.from({ length: 6 }).map((_, i) => (
-            <MenuItem key={i} value={(i + 5) * 10 - 1}>
-              {(i + 5) * 10 - 1}
+            <MenuItem key={i} value={(i + 3) * 10 - 1}>
+              {(i + 3) * 10 - 1}
             </MenuItem>
           ))}
         </Select>
@@ -56,13 +58,13 @@ export function EditorControls() {
       <FormControl fullWidth>
         <InputLabel>Map Height</InputLabel>
         <Select
-          value={ctx.height}
+          value={editor.map.height}
           label='Map Height'
-          onChange={(ev) => ctx.setHeight(Number(ev.target.value))}
+          onChange={(ev) => editor.map.onHeightChange(Number(ev.target.value))}
         >
           {Array.from({ length: 6 }).map((_, i) => (
-            <MenuItem key={i} value={(i + 3) * 10 - 1}>
-              {(i + 3) * 10 - 1}
+            <MenuItem key={i} value={(i + 2) * 10 - 1}>
+              {(i + 2) * 10 - 1}
             </MenuItem>
           ))}
         </Select>

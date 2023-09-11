@@ -10,7 +10,6 @@ import {
   makeAxialConversion,
   boundingBox,
   makePolygonConverter,
-  box,
 } from '@wargame/hex'
 
 export interface HexGridContext {
@@ -35,8 +34,7 @@ export const HexGridContext = createContext<HexGridContext>({
 export interface HexGridContextProviderProps {
   children: React.ReactNode
   hexSize: number
-  width: number
-  height: number
+  hexes: AxialCoordinate[]
 }
 
 const orientation = PointyTopOrientation
@@ -55,18 +53,17 @@ export function HexGridContextProvider(props: HexGridContextProviderProps) {
     CartesianCoordiate([props.hexSize * 3, props.hexSize * 2])
   )
   const getPolygonPath = makePolygonConverter(orientation)
-  const hexes = box(props.width, props.height)
   const makeHexGridTable = R.fromIterable((hex: AxialCoordinate) => {
     const key = axialToString(hex)
     const center = convertToCartesian(hex)
     const polygonPath = getPolygonPath(center, props.hexSize)
     return [key, { center, polygonPath }]
   })
-  const [width, height] = boundingBox(hexes, convertToCartesian)
+  const [width, height] = boundingBox(props.hexes, convertToCartesian)
   return (
     <HexGridContext.Provider
       value={{
-        grid: makeHexGridTable(hexes),
+        grid: makeHexGridTable(props.hexes),
         width: width + 3 * props.hexSize,
         height: height + 2 * props.hexSize,
         convertToAxial,

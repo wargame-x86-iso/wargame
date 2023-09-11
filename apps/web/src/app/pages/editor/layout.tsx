@@ -1,11 +1,10 @@
 import { AppBar, Box, Toolbar } from '@mui/material'
 
-import { Scroll } from '../../components'
-
 export interface EditorLayoutProps {
   map: React.ReactNode
   header: React.ReactNode
   controls: React.ReactNode
+  mapContainerRef: (node: HTMLDivElement | null) => void
 }
 
 export function EditorLayout(props: EditorLayoutProps) {
@@ -24,10 +23,13 @@ export function EditorLayout(props: EditorLayoutProps) {
         </AppBar>
       </Box>
       <Box display='flex' flexDirection='row' flex='1'>
-        <Box flex='1' display='flex' sx={{ background: '#333' }}>
-          <Scroll.Wrapper>
-            <Scroll.Inner>{props.map}</Scroll.Inner>
-          </Scroll.Wrapper>
+        <Box
+          flex='1'
+          display='flex'
+          ref={props.mapContainerRef}
+          sx={{ background: '#333' }}
+        >
+          {props.map}
         </Box>
         <Box width={500}>{props.controls}</Box>
       </Box>

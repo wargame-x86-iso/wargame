@@ -9,7 +9,7 @@ import {
 } from '@wargame/hex'
 
 import { HexGridContext } from '../../context'
-import { PixiViewport } from '../../components'
+import { Viewport } from '../../components'
 
 export interface PolygonProps {
   path: number[]
@@ -75,18 +75,21 @@ export function GameBoard(props: GameBoardProps) {
     <Stage
       width={props.width}
       height={props.height}
-      options={{ backgroundColor: 0xaaeeff }}
+      options={{ backgroundColor: 0x666666 }}
     >
-      <PixiViewport
+      <Viewport
         width={props.width}
         height={props.height}
         worldWidth={ctx.width}
         worldHeight={ctx.height}
         onClick={onMapClick}
+        zoom={{
+          min: 0.25,
+          max: 1,
+        }}
       >
         <Container>
           {hexes}
-          {labels}
           {selected && (
             <Polygon
               path={ctx.grid[axialToString(selected)].polygonPath.flat()}
@@ -95,7 +98,7 @@ export function GameBoard(props: GameBoardProps) {
             />
           )}
         </Container>
-      </PixiViewport>
+      </Viewport>
     </Stage>
   )
 }
