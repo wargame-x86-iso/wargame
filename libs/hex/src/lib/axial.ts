@@ -93,77 +93,69 @@ export function makeCartesianConversion(
   if (orientation.name === 'flat-top') {
     return ([q, r]) =>
       CartesianCoordiate([
-        hexRadius * ((3 / 2) * q) * separationMultiplier + oX,
-        hexRadius *
-          ((Math.sqrt(3) / 2) * q + Math.sqrt(3) * r) *
-          separationMultiplier +
-          oY,
+        Math.round(hexRadius * ((3 / 2) * q) * separationMultiplier + oX),
+        Math.round(
+          hexRadius *
+            ((Math.sqrt(3) / 2) * q + Math.sqrt(3) * r) *
+            separationMultiplier +
+            oY
+        ),
       ])
   } else if (orientation.name === 'pointy-top') {
     return ([q, r]) =>
       CartesianCoordiate([
-        hexRadius *
-          (Math.sqrt(3) * q + (Math.sqrt(3) / 2) * r) *
-          separationMultiplier +
-          oX,
-        hexRadius * ((3 / 2) * r) * separationMultiplier + oY,
+        Math.round(
+          hexRadius *
+            (Math.sqrt(3) * q + (Math.sqrt(3) / 2) * r) *
+            separationMultiplier +
+            oX
+        ),
+        Math.round(hexRadius * ((3 / 2) * r) * separationMultiplier + oY),
       ])
   } else {
     throw new Error('Invalid orientation')
   }
 }
 
-type Range = [number, number]
-const Range = (range: Range) => range
-
-function rangeDistance([max, min]: Range) {
-  return max - min
+export function makeAxialConversion(
+  orientation: Orientation,
+  hexRadius: number,
+  separationMultiplier: number,
+  cartesianOrigin: CartesianCoordiate
+): (c: CartesianCoordiate) => AxialCoordinate {
+  const [oX, oY] = cartesianOrigin
+  if (orientation.name === 'flat-top') {
+    return ([x, y]) =>
+      AxialCoordinate([
+        Math.round(((2 / 3) * (x - oX)) / (hexRadius * separationMultiplier)),
+        Math.round(
+          (-1 / 3) * (x - oX) +
+            ((Math.sqrt(3) / 3) * (y - oY)) / (hexRadius * separationMultiplier)
+        ),
+      ])
+  } else if (orientation.name === 'pointy-top') {
+    return ([x, y]) =>
+      AxialCoordinate([
+        Math.round(
+          ((Math.sqrt(3) / 3) * (x - oX)) / (hexRadius * separationMultiplier) -
+            ((1 / 3) * (y - oY)) / (hexRadius * separationMultiplier)
+        ),
+        Math.round(((2 / 3) * (y - oY)) / (hexRadius * separationMultiplier)),
+      ])
+  } else {
+    throw new Error('Invalid orientation')
+  }
 }
 
 export function boundingBox(
   coordinates: AxialCoordinate[],
   toCartesian: (v: AxialCoordinate) => CartesianCoordiate
 ): CartesianCoordiate {
-  // Find the min and max values for q and r.  Convert those to rectangular coordinates.
-  let maxRadius = 0
-  coordinates.forEach((coordinate) => {
-    const [q, r] = coordinate
-    const s = sCoordinate(coordinate)
-    if (Math.abs(q) > maxRadius) {
-      maxRadius = q
-    }
-    if (Math.abs(r) > maxRadius) {
-      maxRadius = r
-    }
-    if (Math.abs(s) > maxRadius) {
-      maxRadius = s
-    }
-  })
-  maxRadius++
-  const cornerPoints = Object.values(AxialDirections).map((d) =>
-    toCartesian(scale(d, maxRadius))
+  return coordinates.reduce(
+    ([xMax, yMax]: CartesianCoordiate, coordinate: AxialCoordinate) => {
+      const [x, y] = toCartesian(coordinate)
+      return CartesianCoordiate([Math.max(x, xMax), Math.max(y, yMax)])
+    },
+    CartesianCoordiate([0, 0])
   )
-  // Now that we know all the corners of the enclosing hexagon, we enclose that in a rectangle by finding the min and max for x and y
-  let xRange = Range([0, 0])
-  let yRange = Range([0, 0])
-  cornerPoints.forEach(([x, y]) => {
-    const [xMin, xMax] = xRange
-    const [yMin, yMax] = yRange
-    if (x < xMin) {
-      xRange = Range([x, xMax])
-    }
-    if (x > xMax) {
-      xRange = Range([xMin, x])
-    }
-    if (y < yMin) {
-      yRange = Range([y, yMax])
-    }
-    if (y > yMax) {
-      yRange = Range([yMin, y])
-    }
-  })
-
-  const width = rangeDistance(xRange)
-  const height = rangeDistance(yRange)
-  return CartesianCoordiate([width, height])
 }

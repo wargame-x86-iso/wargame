@@ -1,20 +1,32 @@
-import { Graphics as PixiGraphics, TextStyle } from 'pixi.js'
-import { Stage, Graphics, Container, Text } from '@pixi/react'
-import { useCallback, useContext } from 'react'
+import { ColorSource, Graphics as PixiGraphics, TextStyle } from 'pixi.js'
+import { Stage, Sprite, Graphics, Container, Text } from '@pixi/react'
+import { useCallback, useContext, useState } from 'react'
 
-import { HexGridContext } from '../../context/hex-grid'
+import {
+  AxialCoordinate,
+  CartesianCoordiate,
+  axialToString,
+} from '@wargame/hex'
+
+import { HexGridContext } from '../../context'
 import { PixiViewport } from '../../components'
 
 export interface PolygonProps {
   path: number[]
+  fill: [ColorSource | undefined, number | undefined]
+  line: [number, ColorSource | undefined, number | undefined]
 }
 
 export function Polygon(props: PolygonProps) {
   const draw = useCallback(
     (g: PixiGraphics) => {
-      g.beginFill('#ae5').drawPolygon(props.path).endFill()
+      g.clear()
+        .beginFill(...props.fill)
+        .lineStyle(...props.line)
+        .drawPolygon(props.path)
+        .endFill()
     },
-    [props.path]
+    [props.path, props.fill, props.line]
   )
   return <Graphics draw={draw} />
 }
@@ -26,14 +38,27 @@ export interface GameBoardProps {
 
 export function GameBoard(props: GameBoardProps) {
   const ctx = useContext(HexGridContext)
-  const hexes = Object.values(ctx.grid).map((hex) => (
-    <Polygon path={hex.polygonPath.flat()} />
+  const [selected, setSelected] = useState<AxialCoordinate | null>(null)
+  const onMapClick = useCallback(
+    (x: number, y: number) => {
+      setSelected(ctx.convertToAxial(CartesianCoordiate([x, y])))
+    },
+    [ctx, setSelected]
+  )
+  const hexes = Object.keys(ctx.grid).map((key) => (
+    <Polygon
+      key={key}
+      path={ctx.grid[key].polygonPath.flat()}
+      fill={['#af0', 1]}
+      line={[1, '#666', 0.2]}
+    />
   ))
   const labels = Object.keys(ctx.grid).map((key) => {
     const [x, y] = ctx.grid[key].center
     return (
       <Text
-        text={key}
+        key={key}
+        text={`Hex: ${key}\nXY: ${x},${y}`}
         x={x}
         y={y}
         style={
@@ -50,17 +75,25 @@ export function GameBoard(props: GameBoardProps) {
     <Stage
       width={props.width}
       height={props.height}
-      options={{ backgroundColor: 0x1099bb }}
+      options={{ backgroundColor: 0xaaeeff }}
     >
       <PixiViewport
         width={props.width}
         height={props.height}
-        worldHeight={1000}
-        worldWidth={1000}
+        worldWidth={ctx.width}
+        worldHeight={ctx.height}
+        onClick={onMapClick}
       >
         <Container>
           {hexes}
           {labels}
+          {selected && (
+            <Polygon
+              path={ctx.grid[axialToString(selected)].polygonPath.flat()}
+              fill={['#f00', 0.1]}
+              line={[1, '#f00', 0.2]}
+            />
+          )}
         </Container>
       </PixiViewport>
     </Stage>
