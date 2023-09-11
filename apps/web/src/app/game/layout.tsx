@@ -1,11 +1,10 @@
 import { AppBar, Box, Toolbar } from '@mui/material'
 
-import { Scroll } from '../components'
-
 export interface GameLayoutProps {
   map: React.ReactNode
   header: React.ReactNode
   controls: React.ReactNode
+  mapContainerRef: (node: HTMLDivElement | null) => void
 }
 
 export function GameLayout(props: GameLayoutProps) {
@@ -16,19 +15,20 @@ export function GameLayout(props: GameLayoutProps) {
         inset: 0,
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'hidden',
       }}
     >
-      <Box height='80'>
-        <AppBar position='relative'>
-          <Toolbar>{props.header}</Toolbar>
-        </AppBar>
-      </Box>
       <Box display='flex' flexDirection='row' flex='1'>
-        <Box flex='1' display='flex' sx={{ background: '#333' }}>
+        <Box
+          flex='1'
+          display='flex'
+          sx={{ background: '#333' }}
+          ref={props.mapContainerRef}
+        >
           {props.map}
         </Box>
-        <Box width={500}>{props.controls}</Box>
       </Box>
+      <Box height={200}>{props.controls}</Box>
     </Box>
   )
 }

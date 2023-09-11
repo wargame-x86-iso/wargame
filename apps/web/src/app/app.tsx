@@ -1,5 +1,5 @@
 import { Route, Routes, Link } from 'react-router-dom'
-import { useWindowSize } from '@uidotdev/usehooks'
+import { useWindowSize } from 'usehooks-ts'
 
 import { Editor } from './editor'
 import { Armory } from './armory'
