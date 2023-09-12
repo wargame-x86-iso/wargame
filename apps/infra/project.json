@@ -1,0 +1,57 @@
+{
+  "name": "infra",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/infra/src",
+  "root": "apps/infra/",
+  "projectType": "application",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/infra/**/*.ts"]
+      }
+    },
+    "up": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pulumi up",
+        "forwardAllArgs": true,
+        "cwd": "apps/infra"
+      }
+    },
+    "destroy": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pulumi destroy",
+        "forwardAllArgs": true,
+        "cwd": "apps/infra"
+      }
+    },
+    "delete-state": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pulumi state delete",
+        "forwardAllArgs": true,
+        "cwd": "apps/infra"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pulumi preview",
+        "forwardAllArgs": true,
+        "cwd": "apps/infra"
+      }
+    },
+    "refresh": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pulumi refresh",
+        "forwardAllArgs": true,
+        "cwd": "apps/infra"
+      }
+    }
+  },
+  "tags": []
+}

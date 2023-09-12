@@ -1,0 +1,6 @@
+config:
+  gcp:project: wargame-staging
+  gcp:region: us-west1
+  github:repository: wargame
+  github:token:
+    secure: AAABAJOZaZAnY5l7ZRCwtgOJDIHeaAdUu0LaZbK+zeZW0IyylnIfyIHVltNBOug4KLQlXmtabaZnBDVHsOlpse5afA6qarBm
