@@ -1,7 +1,7 @@
 config:
   gcp:project: wargame-staging
   gcp:region: us-west1
-  gcp_wargame:alt_region: us-central1
+  wargame:alt_region: us-central1
   github:repository: wargame
   github:token:
     secure: AAABAJOZaZAnY5l7ZRCwtgOJDIHeaAdUu0LaZbK+zeZW0IyylnIfyIHVltNBOug4KLQlXmtabaZnBDVHsOlpse5afA6qarBm
