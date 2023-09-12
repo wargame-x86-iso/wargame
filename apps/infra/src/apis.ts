@@ -14,16 +14,16 @@ import * as gcp from '@pulumi/gcp'
 //   { dependsOn: [serviceControlAPI] }
 // )
 
-// const cloudResourceManagerAPI = new gcp.projects.Service(
-//   'cloud-resource-manager-api',
-//   {
-//     service: 'cloudresourcemanager.googleapis.com',
-//     disableOnDestroy: false,
-//   },
-//   {
-//     dependsOn: [serviceUsageAPI],
-//   }
-// )
+const cloudResourceManagerAPI = new gcp.projects.Service(
+  'cloud-resource-manager-api',
+  {
+    service: 'cloudresourcemanager.googleapis.com',
+    disableOnDestroy: false,
+  },
+  {
+    // dependsOn: [serviceUsageAPI],
+  }
+)
 
 const containerRegistryAPI = new gcp.projects.Service(
   'container-registry-api',
