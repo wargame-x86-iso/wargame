@@ -1,16 +1,16 @@
-// import * as gcp from '@pulumi/gcp'
+import * as gcp from '@pulumi/gcp'
 
-// import { project, location } from './config'
-// import { enabledAPIs } from './apis'
+import { project, location } from './config'
+import { enabledAPIs } from './apis'
 
-// // export const containerRegistry = new gcp.container.Registry(
-// //   'gcr-registry',
-// //   {
-// //     project,
-// //     location,
-// //   },
-// //   { dependsOn: enabledAPIs }
-// // )
+export const containerRegistry = new gcp.container.Registry(
+  'gcr-registry',
+  {
+    project,
+    location,
+  },
+  { dependsOn: enabledAPIs }
+)
 
 // export const containerRegistryServiceAccount = new gcp.serviceaccount.Account(
 //   'gcr-service-account',
