@@ -10,5 +10,3 @@ export const stackSuffix = stack.toUpperCase()
 const github = new pulumi.Config('github')
 export const githubRepository = github.require('repository')
 
-const wargame = new pulumi.Config('wargame')
-export const altLocation = wargame.require('alt_region')

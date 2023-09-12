@@ -1,7 +1,7 @@
 import * as gcp from '@pulumi/gcp'
 
-import { project, altLocation } from './config'
 import { enabledAPIs } from './apis'
+import { project } from './config'
 
 export const containerRegistry = new gcp.container.Registry(
   'gcr-registry',
