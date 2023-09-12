@@ -11,4 +11,4 @@ const github = new pulumi.Config('github')
 export const githubRepository = github.require('repository')
 
 const wargame = new pulumi.Config('gcp_wargame')
-export const altLocation = wargame.require('alt_location')
+export const altLocation = wargame.require('alt_region')
