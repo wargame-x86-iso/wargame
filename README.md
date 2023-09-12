@@ -1,5 +1,36 @@
 # Wargame
 
+TODO
+
+[] Procedural map generation
+[] Save maps
+[] Add assets
+[] Lobby, game creation
+[] Roster builder
+[] Model client view
+[] Socket IO communication
+
+System Design
+
+Goals
+1) deterministic
+2) resilient
+3) cheat-proof
+
+Components
+1) Web client - accesses view (subset) of game state via firebase
+2) Game Server - accesses full game state via redis
+
+Communication Flow
+1) Client sends command to server via socketio
+2) Server receives command, update game state in redis and produces events
+3) Events sent to clients with ordering keys via socketio
+4) Client receives events, for each event, trigger animation, update player's view of state in firestore
+5) Archive event in 'acknowledged' firestore collection
+6) In case of client reconnect, lookup the latest acknowledged event and send any missed events 
+
+In this way the client is free to mess up their own view of the game state without effecting other clients and states should always be recoverable as long as the events are recoverable.
+
 ### React Frontend
 
 ### Socket/Express Backend

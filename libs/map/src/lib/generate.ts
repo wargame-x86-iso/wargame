@@ -12,14 +12,14 @@ import {
 } from '@wargame/hex'
 import { MapTiles } from './map'
 
-const convertToCartesian = makeCartesianConversion(
-  PointyTopOrientation,
-  3,
-  1,
-  CartesianCoordiate([0, 0])
-)
-
 export function makeNoiseMap(seedFn: () => number = Math.random) {
+  const convertToCartesian = makeCartesianConversion(
+    PointyTopOrientation,
+    2000,
+    1,
+    CartesianCoordiate([0, 0])
+  )
+  
   const noise = createNoise2D(seedFn)
   const makeNoiseMap = R.fromIterable((hex: AxialCoordinate) => {
     const [x, y] = convertToCartesian(hex)
@@ -37,7 +37,7 @@ export function noisyElevationMap(
   const mapNoise = makeNoiseMap(seedFn)
   const noise = mapNoise(hexes)
   let trees = R.map(noise, (value) =>
-    value > 0.25 && value < 0.5 ? true : false
+    value > 0.25 && value < 0.4 ? true : false
   )
   for (let i = 0; i < treeGenerations; i++) {
     trees = gameOfLife(trees)
@@ -46,12 +46,10 @@ export function noisyElevationMap(
     if (trees[key]) {
       return MapTiles.forest
     } else {
-      if (value > 0.5) {
-        return MapTiles.mountain
-      } else if (value < -0.25) {
-        return MapTiles.road
-      } else if (value < -0.5) {
+      if (value < -0.3) {
         return MapTiles.water
+      } else {
+        if (value > 0.6) return MapTiles.mountain
       }
       return MapTiles.empty
     }
@@ -65,4 +63,26 @@ export function gameOfLife(state: R.ReadonlyRecord<boolean>) {
       .reduce((a: number, b) => a + b, 0)
     return n > 3 || n < 2 ? false : true
   })
+}
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const voronoi = require('voronoi-diagram')
+
+export function voronoiPartitions(hexes: AxialCoordinate[]) {
+  const convertToCartesian = makeCartesianConversion(
+    PointyTopOrientation,
+    10,
+    1,
+    CartesianCoordiate([0, 0])
+  )
+  
+  const points = hexes.map((hex) => convertToCartesian(hex))
+  console.log(points)
+  const voronoiDiagram = voronoi([])
+  return voronoiDiagram
+  // return R.fromIterable((hex: AxialCoordinate) => {
+  //   const [x, y] = convertToCartesian(hex)
+  //   const value = Math.round(noise(x, y) * 100) / 100
+  //   return [axialToString(hex), value]
+  // })
 }

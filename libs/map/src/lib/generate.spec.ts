@@ -1,6 +1,13 @@
 import { box } from '@wargame/hex'
 
-import { gameOfLife } from './generate'
+import { gameOfLife, voronoiPartitions } from './generate'
+
+describe('voronoiPartitions', () => {
+  it('should work', () => {
+    const map = box(3, 3)
+    expect(voronoiPartitions(map)).toEqual({})
+  })
+})
 
 describe('gameOfLife', () => {
   it('should work', () => {
