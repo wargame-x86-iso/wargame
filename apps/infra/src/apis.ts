@@ -1,5 +1,10 @@
 import * as gcp from '@pulumi/gcp'
 
+const iamAPI = new gcp.projects.Service('iam-api', {
+  service: 'iam.googleapis.com',
+  disableOnDestroy: false,
+})
+
 const cloudResourceManagerAPI = new gcp.projects.Service(
   'cloud-resource-manager-api',
   {
@@ -17,4 +22,8 @@ const containerRegistryAPI = new gcp.projects.Service(
   { dependsOn: [cloudResourceManagerAPI] }
 )
 
-export const enabledAPIs = [cloudResourceManagerAPI, containerRegistryAPI]
+export const enabledAPIs = [
+  iamAPI,
+  cloudResourceManagerAPI,
+  containerRegistryAPI,
+]
