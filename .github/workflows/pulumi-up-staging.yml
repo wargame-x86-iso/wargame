@@ -1,0 +1,58 @@
+name: Pulumi Up Staging
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  up:
+    name: Pulumi Up
+    runs-on: ubuntu-latest
+    env:
+      GCP_PULUMI_CLI_SERVICE_ACCOUNT_TOKEN: ${{ secrets.GCP_PULUMI_CLI_SERVICE_ACCOUNT_TOKEN_STAGING }}
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID_STAGING }}
+      PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node 16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install node deps
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install --production=false --force
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          service_account_key: ${{ env.GCP_PULUMI_CLI_SERVICE_ACCOUNT_TOKEN }}
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          export_default_credentials: true
+
+      - name: Use GCloud Credentials
+        run: gcloud auth configure-docker -q
+
+      - name: Install GKE Auth Plugin
+        uses: cobraz/setup-gke-gcloud-auth-plugin@v1
+        
+      - name: Set up Pulumi
+        uses: pulumi/actions@v4
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ env.PULUMI_ACCESS_TOKEN }}
+
+      - name: Pulumi Up
+        run: |
+          npx nx up infra --stack=staging --yes
+            
