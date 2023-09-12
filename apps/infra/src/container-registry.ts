@@ -32,7 +32,7 @@ export const containerRegistryServiceAccountStorageAdminBinding =
     ],
   })
 
-export const containerRegistryServiceAccountToken = new gcp.serviceaccount.Key(
+export const gcrServiceAccountToken = new gcp.serviceaccount.Key(
   'gcr-service-account-token',
   {
     serviceAccountId: containerRegistryServiceAccount.accountId,

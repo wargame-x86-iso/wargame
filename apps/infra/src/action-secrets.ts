@@ -1,9 +1,9 @@
 import * as github from '@pulumi/github'
 
 import { stackSuffix, githubRepository } from './config'
-import { containerRegistryServiceAccountToken } from './container-registry'
+import { gcrServiceAccountToken } from './container-registry'
 
-const privateKeyJSON = containerRegistryServiceAccountToken.privateKey.apply(
+const privateKeyJSON = gcrServiceAccountToken.privateKey.apply(
   (x) =>
     Buffer.from(x, 'base64')
       .toString('utf-8')
