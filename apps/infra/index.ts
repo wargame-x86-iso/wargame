@@ -1,10 +1,10 @@
 import {
   containerRegistryServiceAccount,
   githubActionSecrets,
-  containerRegistry,
+  // containerRegistry,
 } from './src'
 
-export const containerRegistryURI = containerRegistry.bucketSelfLink
+// export const containerRegistryURI = containerRegistry.bucketSelfLink
 
 export const containerRegistryServiceAccountName =
   containerRegistryServiceAccount.displayName
