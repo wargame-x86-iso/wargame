@@ -7,7 +7,7 @@ export const containerRegistry = new gcp.container.Registry(
   'gcr-registry',
   {
     project,
-    location: altLocation,
+    location: 'US',
   },
   { dependsOn: enabledAPIs }
 )
